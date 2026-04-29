@@ -1,0 +1,108 @@
+/* ================= GLOBAL STYLES ================= */
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Hind Siliguri', sans-serif; }
+body { background: #f1f5f9; color: #1e293b; overflow-x: hidden; }
+
+.pos-container { display: flex; width: 100%; min-height: 100vh; }
+
+/* ================= SIDEBAR (ALWAYS FIXED & VISIBLE) ================= */
+.sidebar {
+    width: 220px; /* সবসময় ফিক্সড থাকবে */
+    background: #0f172a;
+    color: white;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    height: 100vh;
+    overflow-y: auto;
+    z-index: 100000;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+}
+
+.sidebar .logo { padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); position: sticky; top: 0; background: #0f172a; z-index: 10; }
+.nav-menu { list-style: none; padding: 10px 0; }
+.nav-menu li { padding: 12px 15px; cursor: pointer; border-left: 4px solid transparent; display: flex; align-items: center; gap: 10px; color: #cbd5e1; font-weight: 500; font-size: 15px; transition: 0.2s;}
+.nav-menu li:hover, .nav-menu li.active { background: #1e293b; color: #38bdf8; border-left-color: #38bdf8; }
+
+/* ================= MAIN CONTENT (SITS EXACTLY NEXT TO SIDEBAR) ================= */
+.main-content {
+    margin-left: 220px;
+    width: calc(100% - 220px); /* মেনুর জায়গা ছেড়ে বাকি অংশ নেবে */
+    padding: 20px;
+    min-height: 100vh;
+    overflow-x: auto; /* স্ক্রিন ছোট হলে স্ক্রল করা যাবে */
+}
+
+.header-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+
+/* Cards & Tables */
+.card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-bottom: 20px; min-width: max-content; }
+.data-table { width: 100%; border-collapse: collapse; min-width: 700px; }
+.data-table th, .data-table td { padding: 12px 15px; border-bottom: 1px solid #e2e8f0; text-align: left; }
+.data-table th { background: #f8fafc; color: #475569; font-weight: 600; }
+
+/* Grids */
+.summary-cards { display: flex; flex-wrap: wrap; gap: 15px; }
+.summary-cards .card { flex: 1; min-width: 200px; }
+.grid-container { display: flex; flex-wrap: wrap; gap: 15px; }
+.grid-container > div { flex: 1; min-width: 300px; }
+
+/* Billing Section Specifics */
+.billing-container { display: flex; gap: 20px; flex-wrap: wrap; }
+.billing-left { flex: 2; min-width: 450px; }
+.billing-right { flex: 1; min-width: 300px; position: sticky; top: 15px; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+
+/* Forms */
+input, select { width: 100%; padding: 12px 15px; border: 1px solid #cbd5e1; border-radius: 8px; margin-bottom: 15px; font-size: 15px; outline: none;}
+input:focus, select:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59,130,246,0.2); }
+.btn { padding: 12px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; transition: 0.2s;}
+.btn:hover { opacity: 0.9; }
+.btn-primary { background: #3b82f6; color: white; }
+.btn-success { background: #10b981; color: white; }
+.btn-danger { background: #ef4444; color: white; }
+.btn-warning { background: #f59e0b; color: white; }
+.btn-outline { background: transparent; border: 2px solid #cbd5e1; color: #475569; }
+
+/* Switch */
+.switch { position: relative; display: inline-block; width: 46px; height: 24px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #cbd5e1; transition: .4s; border-radius: 24px; }
+.slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+input:checked + .slider { background-color: #10b981; }
+input:checked + .slider:before { transform: translateX(22px); }
+
+/* Modals & Helpers */
+.modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.85); display: flex; align-items: center; justify-content: center; z-index: 100000; padding: 15px; backdrop-filter: blur(4px); }
+.modal-content { background: white; border-radius: 12px; max-height: 90vh; overflow-y: auto; width: 100%; max-width: 500px; padding: 20px;}
+.hidden { display: none !important; }
+
+/* ================= HIDE MOBILE HAMBURGER MENU ================= */
+#mobile-header, #sidebar-overlay { display: none !important; }
+
+/* ================= MOBILE & TAB ADJUSTMENTS ================= */
+@media (max-width: 768px) {
+    /* মোবাইলে সাইডবার একটু চিকন হবে, কিন্তু হারাবে না */
+    .sidebar { width: 160px; }
+    .sidebar .logo h2 { font-size: 16px; }
+    .sidebar .logo img { width: 25px !important; height: 25px !important; }
+    .nav-menu li { font-size: 13px; padding: 10px 15px; }
+    
+    /* মেইন কন্টেন্ট সাইডবারের পাশ থেকে শুরু হবে */
+    .main-content { margin-left: 160px; width: calc(100% - 160px); padding: 10px; }
+    
+    .header-bar h2 { font-size: 18px; }
+    
+    /* কার্ডের ভেতরের জায়গা একটু কমানো হয়েছে মোবাইলের জন্য */
+    .card { padding: 15px; }
+}
+
+/* ================= PRINT STYLES ================= */
+@media print {
+    .no-print, .sidebar, .header-bar, .modal { display: none !important; }
+    .main-content { margin: 0 !important; width: 100% !important; padding: 0 !important; }
+    .card { box-shadow: none !important; border: none !important; padding: 0 !important; }
+    .print-only { display: block !important; }
+}
+.print-only { display: none; }
